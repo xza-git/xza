@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fh.dao.AddressMapper" >
+  <resultMap id="BaseResultMap" type="com.fh.entity.AddressInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+  	id,name,pid,type,code
+  </sql>
+  <!--查询省市县中的省的集合  -->
+  <select id="queryAddressList" parameterType="java.lang.Integer" resultType="com.fh.entity.AddressInfo">
+  	select <include refid="Base_Column_List" /> from province_city_county where pid=#{pid}
+  </select>
+  
+  <!--根据id查询省市县  -->
+  <select id="queryAddressById" parameterType="java.lang.Integer" resultType="com.fh.entity.AddressInfo">
+  	select <include refid="Base_Column_List" /> from province_city_county where id=#{parseInt}
+  </select>
+  
+  <!--查询省市县中的省的集合  -->
+  <select id="queryAddressLists" resultType="com.fh.entity.AddressInfo">
+  	select <include refid="Base_Column_List" /> from province_city_county
+  </select>
+  
+</mapper>

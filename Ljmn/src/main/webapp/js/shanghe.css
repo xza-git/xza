@@ -1,0 +1,42 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.w{
+	width: 900px;
+	margin: 0 auto;
+}
+.header{
+	height: 60px;
+}
+.daohang{
+	height: 55px;
+	background-image: url(nav_bg.png);
+}
+.daohang div{
+	float: left;
+}
+.daohang div a{
+	text-decoration: none;
+	font-size: 18px;
+	color: black;
+	font-weight: bold;
+	line-height: 55px;
+	text-align: center;
+	display: inline-block;
+	width: 120px;
+}
+.one{
+	background-image: url(nav_bg-line.png);
+	height: 55px;
+	width: 	10px;
+	background-repeat: no-repeat;
+}
+.one1{
+	width: 90px;
+	height: 80px;
+}
+.one2{
+	height: 55px;
+	width: 50px;
+}

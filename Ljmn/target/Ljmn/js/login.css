@@ -1,0 +1,53 @@
+@CHARSET "UTF-8";
+.header_login{
+	width: 72px;
+	height: 30px;
+	line-height: 28px;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	font-size: 16px;
+	margin: 0 12px 0 0;
+	background: #202d40;
+	border-radius: 2px;
+	text-decoration: none;
+}
+
+.header_login:hover{
+	background: #76808e;
+	color: white;
+}
+
+.header_signup{
+	width: 72px;
+	height: 30px;
+	line-height: 28px;
+	text-align: center;
+	text-decoration: none;
+	color: #202d40;
+	font-size: 16px;
+	margin: 0 0 0;
+	background: white;
+	border-radius: 2px;
+	text-decoration: none;
+	border: 1px solid #202d40;
+	margin-right: 15px;
+	margin-left: 5px;
+}
+
+
+.header_signup:hover{
+	background: #76808e;
+	color: white;
+}
+
+
+.fr{
+	float: left;
+	display: inline;
+}
+
+body{
+	font-size: 16px;
+	font-weight: bold;
+}
