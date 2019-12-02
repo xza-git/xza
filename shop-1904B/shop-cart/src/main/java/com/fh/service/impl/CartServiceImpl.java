@@ -10,6 +10,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -74,6 +75,26 @@ public class CartServiceImpl implements ICartService {
     }
 
     @Override
+    public Map<String, Object> getCarts2(String phone) {
+        //获取购物车的id
+        String cartId = (String) redisTemplate.opsForValue().get("cartid_" + phone);
+        //取出购物车数据
+        List<CartBean> cartList =redisTemplate.opsForHash().values(cartId);
+        List<CartBean> cartList2 =new ArrayList<>();
+        BigDecimal bigDecimal = BigDecimal.valueOf(0.00);
+        for (CartBean cart:cartList){
+            if(cart.getIsChecked()){
+                bigDecimal = bigDecimal.add(cart.getSubtotal());
+                cartList2.add(cart);
+            }
+        }
+        Map<String, Object> map=new HashMap<>();
+        map.put("cartList",cartList2);
+        map.put("total",bigDecimal);
+        return map;
+    }
+
+    @Override
     public void changeNum(Integer productId, String phone,Integer type) {
         //获取购物车的ID
         String cartId = (String) redisTemplate.opsForValue().get("cartid_" + phone);
@@ -99,6 +120,8 @@ public class CartServiceImpl implements ICartService {
         }
         redisTemplate.opsForHash().put(cartId, productId,cartBean);
     }
+
+
 
 
 }

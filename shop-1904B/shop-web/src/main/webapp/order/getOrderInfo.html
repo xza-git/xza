@@ -161,35 +161,8 @@
 				<div class="step-tit">
 					<h5>送货清单</h5>
 				</div>
-				<div class="step-cont">
-					<ul class="send-detail">
-						<li>
+				<div class="step-cont" id="product">
 
-							<div class="sendGoods">
-
-								<ul class="yui3-g">
-									<li class="yui3-u-1-6">
-										<span><img src="img/goods.png"/></span>
-									</li>
-									<li class="yui3-u-7-12">
-										<div class="desc">Apple iPhone 6s (A1700) 64G 玫瑰金色 移动联通电信4G手机硅胶透明防摔软壳 本色系列</div>
-										<div class="seven">7天无理由退货</div>
-									</li>
-									<li class="yui3-u-1-12">
-										<div class="price">￥5399.00</div>
-									</li>
-									<li class="yui3-u-1-12">
-										<div class="num">X1</div>
-									</li>
-									<li class="yui3-u-1-12">
-										<div class="exit">有货</div>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li></li>
-						<li></li>
-					</ul>
 				</div>
 				<div class="hr"></div>
 			</div>
@@ -213,7 +186,7 @@
 	<div class="order-summary">
 		<div class="static fr">
 			<div class="list">
-				<span><i class="number">1</i>件商品，总商品金额</span>
+				<span><i class="number" id="coun">1</i>件商品，总商品金额</span>
 				<em class="allprice">¥5399.00</em>
 			</div>
 			<div class="list">
@@ -431,6 +404,8 @@
 
 
 	$(function () {
+
+
 		var token = "";
 		if (sessionStorage.getItem("token")) {
 			token = sessionStorage.getItem("token");
@@ -450,6 +425,50 @@
 			}
 		})
 
+		$.ajax({
+			url: "http://localhost:9094/carts/cartShow2",
+			type: "get",
+			dataType: "json",
+			success: function (result) {
+				var listHtml="";
+				var cartList = result.data.cartList;
+				for (var i=0;i<cartList.length;i++){
+					listHtml+='<ul class="send-detail">';
+					listHtml+='<li>';
+					listHtml+='<div class="sendGoods">';
+					listHtml+='<ul class="yui3-g">';
+					listHtml+='<li class="yui3-u-1-6">';
+					listHtml+='<span><img src="'+cartList[i].mainImg+'"/></span>';
+					listHtml+='</li>';
+					listHtml+='<li class="yui3-u-7-12">';
+					listHtml+='<div class="desc">'+cartList[i].productName+'</div>';
+					listHtml+='<div class="seven">7天无理由退货</div>';
+					listHtml+='</li>';
+					listHtml+='<li class="yui3-u-1-12">';
+					listHtml+='<div class="price">￥'+cartList[i].subtotal+'</div>';
+					listHtml+='</li>';
+					listHtml+='<li class="yui3-u-1-12">';
+					listHtml+='<div class="num">X'+cartList[i].count+'</div>';
+					listHtml+='</li>';
+					listHtml+='<li class="yui3-u-1-12">';
+					listHtml+='<div class="exit">有货</div>';
+					listHtml+='</li>';
+					listHtml+='</ul>';
+					listHtml+='</div>';
+					listHtml+='</li>';
+					listHtml+='<li></li>';
+					listHtml+='<li></li>';
+					listHtml+='</ul>';
+				}
+				$("#product").html(listHtml)
+				$(".allprice").html(result.data.total);
+				$("span[class='price']").html(result.data.total);
+				$("#coun").html(cartList.length);
+			}
+		})
+
+
+
 
 
 
@@ -465,6 +484,7 @@
 				for(var i=0;i<addressList.length;i++){
 					addressShowHtml+='<div>';
 					if(i == 0){
+						bian(addressList[i].id);
 						addressShowHtml+='<div class="con name selected"><a href="javascript:void(0)">'+addressList[i].name+'<span title="点击取消选择">&nbsp;</a></div>';
 					}else{
 						addressShowHtml+='<div class="con name"><a href="javascript:void(0)">'+addressList[i].name+'<span title="点击取消选择">&nbsp;</a></div>'

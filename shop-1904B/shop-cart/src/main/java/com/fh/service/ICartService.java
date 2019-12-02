@@ -10,4 +10,6 @@ public interface ICartService {
     void changeNum(Integer productId, String phone,Integer type);
 
     void updateCheckStatus(Integer productId, String phone);
+
+    Map<String, Object> getCarts2(String phone);
 }

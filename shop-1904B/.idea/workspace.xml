@@ -117,7 +117,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 8.5.32">
+  <component name="RunManager" selected="Spring Boot.ShopCartApplication">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
@@ -314,7 +314,7 @@
       <workItem from="1574926976045" duration="20816000" />
       <workItem from="1575161582989" duration="1893000" />
       <workItem from="1575163712266" duration="9686000" />
-      <workItem from="1575251878230" duration="30911000" />
+      <workItem from="1575251878230" duration="34608000" />
     </task>
     <servers />
   </component>

@@ -42,6 +42,15 @@ public class CartController {
         Map<String, Object> carts = cartService.getCarts(phone);
         return ResponseServer.success(carts);
     }
+
+    @GetMapping("cartShow2")
+    @LoginAnnotation
+    public ResponseServer cartShow2(HttpServletRequest request){
+        String phone= (String) request.getAttribute("phone");
+        Map<String, Object> carts = cartService.getCarts2(phone);
+        return ResponseServer.success(carts);
+    }
+
     @LoginAnnotation
     @PostMapping("/updataNum")
     public ResponseServer changeNum(Integer type,Integer productId,HttpServletRequest request){
